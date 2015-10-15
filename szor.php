@@ -48,7 +48,7 @@ class Szor {
 		$has_all = false;
 		foreach ( $keys as $key ) {
 			$has_all = $this->has( $key );
-			if ( false === $has_all ) {
+			if ( ! $has_all ) {
 				break;
 			}
 		}
