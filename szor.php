@@ -28,7 +28,7 @@ class Szor {
 	 * @param array $options	The options of the new size.
 	 * @since 1.0.0
 	 */
-	public function __construct( $options ) {
+	public function __construct( $options = array() ) {
 		$this->options = $options;
 
 		$required_params = array( 'name', 'width', 'height' );
@@ -44,7 +44,7 @@ class Szor {
 	 * @param array $keys The array with all of the required params.
 	 * @since 1.0.0
 	 */
-	public function has_set( $keys ) {
+	private function has_set( $keys ) {
 		$has_all = false;
 		foreach ( $keys as $key ) {
 			$has_all = $this->has( $key );
@@ -60,7 +60,7 @@ class Szor {
 	 * @param array $key_name The name of the key to search.
 	 * @since 1.0.0
 	 */
-	public function has( $key_name ) {
+	private function has( $key_name ) {
 		return array_key_exists( $key_name, $this->options );
 	}
 }
