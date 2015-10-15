@@ -31,6 +31,9 @@ class Szor {
 	public function __construct( $options = array() ) {
 		$this->options = $options;
 		$required_params = array( 'name', 'width', 'height' );
+		if( ! $this->has_set( $required_params ) ){
+			return;
+		}
 	}
 
 	/**
