@@ -30,13 +30,7 @@ class Szor {
 	 */
 	public function __construct( $options = array() ) {
 		$this->options = $options;
-
 		$required_params = array( 'name', 'width', 'height' );
-		if ( $this->has_set( $required_params ) ) {
-			echo('has all');
-		} else {
-			echo('does not has all');
-		}
 	}
 
 	/**
@@ -44,8 +38,8 @@ class Szor {
 	 * @param array $keys The array with all of the required params.
 	 * @since 1.0.0
 	 */
-	private function has_set( $keys ) {
-		$has_all = false;
+	public function has_set( $keys ) {
+		$has_all = true;
 		foreach ( $keys as $key ) {
 			$has_all = $this->has( $key );
 			if ( ! $has_all ) {
