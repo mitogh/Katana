@@ -34,7 +34,7 @@ if you remove all sizes.
 Each filter allow to return what sizes of images are needed for that
 particular filter, the returned sizes represents the allowed images
 sizes, each size is the name that was registered when you created an
-image size using 'add_image_size'.
+image size using `add_image_size`.
 
 ### katana_refine_{post_type}  
 
