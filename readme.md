@@ -3,9 +3,9 @@
 > Save disk space and creates custom images sizes only where is
 required.
 
-Custom filters to allow easy update of images sizes for Wordpress.
+Custom filters to allow easy update of images sizes for [Wordpress](https://wordpress.org/).
 
-![](/media/samurai.jpg)
+![](/media/samurai.jpg)  
 ***Picture from [WikiImages](https://pixabay.com/samurai-guerrero-caza-de-samurai-67662/)***
 
 ## Usage
