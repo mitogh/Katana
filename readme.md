@@ -24,7 +24,7 @@ After that line you can add all your custom filters.
 This library comes with custom filters that allows edit what sizes are
 generated under some custom post types or under a specific `post_id`. 
 
-**Note: ** The default size of the image is always generated no matter
+**Note:** The default size of the image is always generated no matter
 if you remove all sizes.  
 
 ## Filters 
@@ -45,6 +45,7 @@ add an image on a page it wont create any new size of image.
 add_filter('katana_refine_page', 'remove_all_sizes_from_pages');
 
 function remove_all_sizes_from_pages( $sizes ){
+  // Return an empty array that specify the sizes of images for pages only
   return array();
 }
 ```
