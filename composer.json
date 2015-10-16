@@ -3,13 +3,7 @@
   "description": "Add images sizes of Wordpress only where is required",
   "require-dev": {
     "squizlabs/php_codesniffer": "2.*",
-    "wp-coding-standards/wpcs": "dev-master",
-    "phpunit/phpunit": "4.8.*"
-  },
-  "autoload": {
-    "psr-0": {
-      "": "."
-    }
+    "wp-coding-standards/wpcs": "dev-master"
   },
   "scripts": {
     "post-install-cmd": [
