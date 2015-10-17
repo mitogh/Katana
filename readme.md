@@ -10,6 +10,10 @@ Custom filters to allow easy update of images sizes for [Wordpress](https://word
 
 ## Installation 
 
+**This is not a plugin**, you can just download the `class-katana.php`
+or use composer to add it as a dependency in your website or plugin.
+After you download the file make sure to include the file using `include` function.
+
 In order to have access to the filters you need to create a new instance
 of the Kata object.
 
@@ -38,10 +42,11 @@ image size using `add_image_size`.
 
 ### katana_refine_{post_type}  
 
+`{post_type}`, can be any post type declared on the site, post page or
+even a custom one, like movies.
+
 This filter allows to refine the sizes of images for a certain post
-type, this can be the default ones like: post, page or a custom one like
-movies to change what sizes of images are being generated on those post
-types. 
+type.
 
 **Example**
 
@@ -60,27 +65,61 @@ function remove_all_sizes_from_pages( $sizes ){
 
 ### katana_refine_{post_id}
 
+`{post_id}`, is the id of the post, page or custom post type all new
+entries has a `post_id`
+
 This filter allow you to change the required sizes on a particular
 post_id all posts, pages or custom post types has a post_id than can be
 used for this. 
 
 **Example**
 
-Image we have previously declared an `author_profile_image` size of
+Imagine we have previously declared an `author_profile_image` size of
 image, like:
 
 ```php
 add_image_size( 'author_profile_image', 350, 350, true );
 ```
 
-We need to creates images of the author_profile_image size only in the
-entry with the id: 105.
+We need to creates images of the `author_profile_image` size only in the
+entry with the id: `105`.
 
 ```php
 add_filter('katana_refine_105', 'allow_only_author_profile_image');
 
 function allow_only_author_profile_image( $sizes ){
   $sizes = array( 'author_profile_image' );
+  return $sizes; 
+}
+```
+
+### katana_refine_{template_slug}
+
+`{template_slug}`,  is the slug of the template, the slug is where is
+located the template, replacing `-` and `/` by `_` and witout the `.php`
+extension. 
+
+**Examples**  
+
+| Location                    |     Filter name             |
+|-----------------------------|-----------------------------| 
+| page-templates/full.php     |     page_templates_full     |
+| page-templates/shop.php     |     page_templates_shop     |
+| portfolio.php               |     portfolio               |
+
+**Example** 
+
+This filter just allow to create two sizes of images in the
+`page-template/full.php`: 
+
+- poster
+- landscape
+
+```php
+add_filter('katana_refine_page_templates_full', 'image_sizes_for_full_page_template');
+
+function image_sizes_for_full_page_template( $sizes ){
+  $sizes = array( 'poster', 'landscape' );
   return $sizes; 
 }
 ```
