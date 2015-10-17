@@ -96,7 +96,7 @@ function allow_only_author_profile_image( $sizes ){
 ### katana_refine_{template_slug}
 
 `{template_slug}`,  is the slug of the template, the slug is where is
-located the template, replacing '-' and '/' by '_' and witout the '.php'
+located the template, replacing `-` and `/` by `_` and witout the `.php`
 extension. 
 
 **Examples**  
