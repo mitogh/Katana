@@ -116,8 +116,7 @@ This filter just allow to create two sizes of images in the
 - landscape
 
 ```php
-add_filter('katana_refine_page_templates_full',
-'image_sizes_for_full_page_template');
+add_filter('katana_refine_page_templates_full', 'image_sizes_for_full_page_template');
 
 function image_sizes_for_full_page_template( $sizes ){
   $sizes = array( 'poster', 'landscape' );
