@@ -101,12 +101,11 @@ extension.
 
 **Examples**  
 
-| Location                    |     Filter name             |  
-|-----------------------------|-----------------------------|  
-
-- page-templates/full.php     |     page_templates_full
-- page-templates/shop.php     |     page_templates_shop
-- portfolio.php               |     portfolio
+| Location                    |     Filter name             |
+|-----------------------------|-----------------------------| 
+| page-templates/full.php     |     page_templates_full     |
+| page-templates/shop.php     |     page_templates_shop     |
+| portfolio.php               |     portfolio               |
 
 **Example** 
 
