@@ -1,4 +1,4 @@
-# Katana
+# Katana [![Build Status](https://travis-ci.org/mitogh/Katana.svg?branch=master)](https://travis-ci.org/mitogh/Katana)
 
 > Save disk space and creates custom images sizes only where is
 required.
