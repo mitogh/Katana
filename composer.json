@@ -1,19 +1,33 @@
 {
   "name": "mitogh/katana",
-  "description": "Add images sizes of Wordpress only where is required",
+  "description": "Filters to control where the size of images are generated.",
+  "keywords": ["wordpress", "filter", "images"],
+  "homepage": "https://github.com/mitogh/Katana",
+  "type": "library",
+  "licence": "MIT",
+  "authors": [
+    {
+      "name": "Crisoforo Gaspar Hernandez",
+      "email": "mitogh@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
   "require-dev": {
     "squizlabs/php_codesniffer": "2.*",
-    "wp-coding-standards/wpcs": "dev-master"
+    "wp-coding-standards/wpcs": "dev-master",
+    "phpunit/phpunit": "~4.5"
+  },
+  "autoload": {
+    "psr-4": {"Katana\\": "src/Katana"}
+  },
+  "autoload-dev": {
+    "psr-4": {"Katana\\": "tests/Katana"}
   },
   "scripts": {
     "post-install-cmd": [
       "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/"
     ]
-  },
-  "authors": [
-    {
-      "name": "mitogh",
-      "email": "mitogh@gmail.com"
-    }
-  ]
+  }
 }
