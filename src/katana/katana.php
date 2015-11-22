@@ -1,13 +1,4 @@
-<?php
-/**
- * Katana filters
- * @package Katana
- *
- * @since 1.0.0
- */
-
-namespace Katana;
-
+<?php namespace Katana;
 
 /**
  * Katana is a simple filters system to allow user define the only required sizes
@@ -137,5 +128,4 @@ class Katana {
 		$filter_name = sprintf( '%s_%s', KATANA_FILTER, $suffix_name );
 		return apply_filters( $filter_name, $sizes );
 	}
-
 }

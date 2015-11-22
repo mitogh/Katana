@@ -1,7 +1,13 @@
-<?php
+<?php namespace Katana\Helpers;
 
-namespace Katana\Helpers;
-
+/**
+ * Formatter helper methods to format strings from file names.
+ *
+ * @package Katana
+ * @subpackage helpers
+ *
+ * @since 1.0.0
+ */
 class Formatter {
 	/**
 	 * Helps by creating a more meaningful name on the template by changing
