@@ -10,4 +10,4 @@ install:
   - travis_retry composer install --no-interaction --prefer-source;
   - travis_retry composer update --prefer-source --no-interaction --prefer-stable;
 script:
-  - ./vendor/bin/phpcs --standard="./codesniffer.ruleset.xml" --colors src/Katana/*.php src/Katana/*/*.php && composer test
+  - ./vendor/bin/phpcs --standard="./codesniffer.ruleset.xml" --colors ./src/katana/*.php ./src/katana/*/*.php && composer test
