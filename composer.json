@@ -26,8 +26,16 @@
     "psr-4": {"Katana\\": "tests/Katana"}
   },
   "scripts": {
-    "post-install-cmd": [
-      "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/"
+    "post-update-cmd": [
+      "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/",
+      "./vendor/bin/phpcs --config-set default_standard ./codesniffer.ruleset.xml",
+      "./vendor/bin/phpcs --config-set show_progress 0",
+      "./vendor/bin/phpcs --config-set colors 1"
+    ],
+    "test": [
+        "phpcs ./src/Katana/*.php",
+        "phpcs ./src/Katana/*/*.php",
+        "phpunit"
     ]
   }
 }
