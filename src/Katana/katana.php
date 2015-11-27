@@ -4,21 +4,11 @@
  * Katana is a simple filters system to allow user define the only required sizes
  * for the images beein generated from the function `add_image_size`, this will
  * help to decrease the size of the images where sometimes are not required.
+ *
  * @package Katana
+ * @since 1.0.0
  */
 class Katana {
-	/**
-	 * Wordpress filter that runs before the sizes of images are generated
-	 * @since 1.0.0
-	 */
-	const WORDPRESS_FILTER = 'intermediate_image_sizes';
-
-	/**
-	 * Prefix of all of the Katana filters
-	 * @since 1.0.0
-	 */
-	const KATANA_FILTER = 'katana_refine';
-
 	/**
 	 * Constructor that add the two filters one into the native WP filter from
 	 * where the images are generated and a custom one to handle images sizes.
