@@ -1,6 +1,4 @@
-<?php
-
-namespace Katana\Helpers;
+<?php namespace Katana\Helpers;
 
 class FormatterTest extends \PHPUnit_Framework_TestCase {
 
