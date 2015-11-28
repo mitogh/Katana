@@ -1,5 +1,7 @@
 <?php namespace Katana;
 
+use Katana\Helpers as Helpers;
+
 /**
  * Katana is a simple filters system to allow user define the only required sizes
  * for the images beein generated from the function `add_image_size`, this will
@@ -9,6 +11,7 @@
  * @since 1.0.0
  */
 class Katana {
+
 	/**
 	 * Constructor that add the two filters one into the native WP filter from
 	 * where the images are generated and a custom one to handle images sizes.
