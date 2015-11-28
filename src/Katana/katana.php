@@ -18,8 +18,8 @@ class Katana {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_filter( KATANA_WP_FILTER, array( $this, 'filter' ) );
-		add_filter( KATANA_FILTER, array( $this, 'refine' ), 10, 2 );
+		add_filter( Helpers\Config::WP_FiLTER, array( $this, 'filter' ) );
+		add_filter( Helpers\Config::KATANA_FILTER, array( $this, 'refine' ), 10, 2 );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Katana {
 	 * @return array $sizes The array of sizes
 	 */
 	public function filter( $sizes ) {
-		return apply_filters( KATANA_FILTER, $sizes, $this->get_the_id() );
+		return apply_filters( Helpers\Config::KATANA_FILTER, $sizes, $this->get_the_id() );
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Katana {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return int Return a int from 0 to n, that represents the current post id
+	 * @return int An int from 0 to n, that represents the current post id
 	 */
 	public function get_the_id() {
 		return isset( $_REQUEST['post_id'] ) ?  absint( $_REQUEST['post_id'] ) : 0;
@@ -58,7 +58,7 @@ class Katana {
 	 * @param int   $ID The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function refine( $sizes, $ID ) {
+	public function refine( $sizes, $ID = 0 ) {
 		if ( 0 === $ID ) {
 			return $sizes;
 		}
@@ -78,7 +78,7 @@ class Katana {
 	 * @param int   $ID The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function post_id_filter( $sizes, $ID ) {
+	public function post_id_filter( $sizes, $ID = 0 ) {
 		$filter_name = sprintf( '%s_%d', KATANA_FILTER, $ID );
 		return apply_filters( $filter_name, $sizes );
 	}
@@ -93,7 +93,7 @@ class Katana {
 	 * @param int   $ID The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function post_type_filter( $sizes, $ID ) {
+	public function post_type_filter( $sizes, $ID = 0 ) {
 		$type = get_post_type( $ID );
 		if ( empty( $type ) ) {
 			return $sizes;
@@ -112,12 +112,12 @@ class Katana {
 	 * @param int   $ID The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function page_template_filter( $sizes, $ID ) {
+	public function page_template_filter( $sizes, $ID = 0 ) {
 		$template = get_page_template_slug( $ID );
 		if ( empty( $template ) ) {
 			return $sizes;
 		}
-		$suffix_name = $this->create_filter_name( $template );
+		$suffix_name = Formatter::to_filter_name( $template );
 		$filter_name = sprintf( '%s_%s', KATANA_FILTER, $suffix_name );
 		return apply_filters( $filter_name, $sizes );
 	}
