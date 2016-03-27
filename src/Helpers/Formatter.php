@@ -33,13 +33,13 @@ class Formatter {
 	 * Creates a specific katana filter based on a param, like a post_id,
 	 * a page template name or similar.
 	 *
-	 * @param string $param The suffix of the filter
+	 * @param string $param The suffix of the filter.
 	 * @return string KATANA_FILTER by default and adding a suffix is param is provided.
 	 * @since 2.0.0
 	 */
 	public static function katana_filter( $param = '' ) {
 		if ( $param ) {
-			$param = trim($param, ' _');
+			$param = trim( $param, ' _' );
 			return sprintf( '%s_%s', Config::KATANA_FILTER, $param );
 		} else {
 			return Config::KATANA_FILTER;

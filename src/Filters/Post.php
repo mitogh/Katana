@@ -26,7 +26,7 @@ class Post {
 	 * @since 1.0.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $id The id of the post, page or custom post type.
+	 * @param int   $post_id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
 	public function filter_by_post_id( $sizes, $post_id = 0 ) {
@@ -40,11 +40,11 @@ class Post {
 	 * @since 1.0.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $id The id of the post, page or custom post type.
+	 * @param int   $post_id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function filter_by_post_type( $sizes, $id = 0 ) {
-		$type = get_post_type( $id );
+	public function filter_by_post_type( $sizes, $post_id = 0 ) {
+		$type = get_post_type( $post_id );
 		if ( empty( $type ) ) {
 			return $sizes;
 		} else {
