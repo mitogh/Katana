@@ -15,6 +15,7 @@ class Katana {
 	/**
 	 * Constructor that add the two filters one into the native WP filter from
 	 * where the images are generated and a custom one to handle images sizes.
+	 *
 	 * @since 1.0.0
 	 */
 	public function __construct() {
@@ -50,21 +51,21 @@ class Katana {
 
 	/**
 	 * Custom filter that applies filters for custom post types and using only
-	 * the ID of the post
+	 * the id of the post
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $ID The id of the post, page or custom post type.
+	 * @param int   $id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function refine( $sizes, $ID = 0 ) {
-		if ( 0 === $ID ) {
+	public function refine( $sizes, $id = 0 ) {
+		if ( 0 === $id ) {
 			return $sizes;
 		}
-		$sizes = $this->post_id_filter( $sizes, $ID );
-		$sizes = $this->post_type_filter( $sizes, $ID );
-		$sizes = $this->page_template_filter( $sizes, $ID );
+		$sizes = $this->post_id_filter( $sizes, $id );
+		$sizes = $this->post_type_filter( $sizes, $id );
+		$sizes = $this->page_template_filter( $sizes, $id );
 		return $sizes;
 	}
 
@@ -75,11 +76,11 @@ class Katana {
 	 * @since 1.0.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $ID The id of the post, page or custom post type.
+	 * @param int   $id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function post_id_filter( $sizes, $ID = 0 ) {
-		$filter_name = sprintf( '%s_%d', KATANA_FILTER, $ID );
+	public function post_id_filter( $sizes, $id = 0 ) {
+		$filter_name = sprintf( '%s_%d', KATANA_FILTER, $id );
 		return apply_filters( $filter_name, $sizes );
 	}
 
@@ -90,11 +91,11 @@ class Katana {
 	 * @since 1.0.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $ID The id of the post, page or custom post type.
+	 * @param int   $id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function post_type_filter( $sizes, $ID = 0 ) {
-		$type = get_post_type( $ID );
+	public function post_type_filter( $sizes, $id = 0 ) {
+		$type = get_post_type( $id );
 		if ( empty( $type ) ) {
 			return $sizes;
 		}
@@ -109,11 +110,11 @@ class Katana {
 	 * @since 1.1.0
 	 *
 	 * @param array $sizes The images sizes.
-	 * @param int   $ID The id of the post, page or custom post type.
+	 * @param int   $id The id of the post, page or custom post type.
 	 * @return return the array with the new sizes.
 	 */
-	public function page_template_filter( $sizes, $ID = 0 ) {
-		$template = get_page_template_slug( $ID );
+	public function page_template_filter( $sizes, $id = 0 ) {
+		$template = get_page_template_slug( $id );
 		if ( empty( $template ) ) {
 			return $sizes;
 		}
