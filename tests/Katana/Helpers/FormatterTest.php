@@ -6,36 +6,36 @@ class FormatterTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider namesPack
 	 */
 	public function testToFilterName( $name, $expected ){
-		$updated_name = Formatter::remove_extension( $name );
-		$this->assertEquals( $expected, Formatter::to_filter_name( $updated_name ) );
+		$this->assertEquals( $expected, Formatter::to_filter_format( $name ) );
 	}
 
 	public function namesPack(){
-		return array(
-			array( '', '' ),
-			array( 'page-templates/default', 'page_templates_default' ),
-			array( 'page-templates/contact-page', 'page_templates_contact_page' ),
-			array( 'contact-page', 'contact_page' ),
-			array( 'contact-PAGE.PHP', 'contact_page' ),
-		);
+		return [
+			[ '', '' ],
+			[ '     _page-template_   ', 'page_template' ],
+			[ 'page-templates/default', 'default' ],
+			[ 'page-templates/contact-page', 'contact_page' ],
+			[ 'contact-page', 'contact_page' ],
+			[ 'contact-PAGE.PHP', 'contact_page' ],
+		];
 	}
 
 	/**
-	 * @dataProvider extensionsPack
+	 * @dataProvider templatesNames
 	 */
-	public function testRemoveExtension( $file, $expected ){
-		$this->assertEquals( $expected, Formatter::remove_extension( $file ) );
+	public function testGetTemplateName( $template_name, $expected ){
+		$this->assertEquals( $expected, Formatter::get_template_name( $template_name ) );
 	}
 
-	public function extensionsPack(){
-		return array(
-			array( 'index.php', 'index' ),
-			array( 'dir/subdir/another/index.php', 'dir/subdir/another/index' ),
-			array( 'movies.js', 'movies' ),
-			array( 'movies.js.php.css', 'movies' ),
-			array( 'letter.txt','letter' ),
-			array( '', '' ),
-		);
+	public function templatesNames() {
+		return [
+			['', ''],
+			['page-templates/template-name', 'template-name'],
+			['    page-templates/template-name   ', 'template-name'],
+			['customPathToaTemplateName/contact-page', 'contact-page'],
+			['customPathToaTemplateName/contact-page.php', 'contact-page'],
+			['contact-page.php', 'contact-page'],
+		];
 	}
 }
 

@@ -20,24 +20,15 @@ class Formatter {
 	 * @param string $original The original path of the template.
 	 * @return string Formated template name as filter name
 	 */
-	public static function to_filter_name( $original = '' ) {
-		$not_allowed = array( '-', '/', '.' );
-		$replace = '_';
-		$updated = str_replace( $not_allowed, $replace, $original );
-		return strtolower( $updated );
+	public static function to_filter_format( $original = '' ) {
+		$to_be_replaced = array( '-', '/', '.' );
+		$to_replace = '_';
+		$original = self::get_template_name( $original );
+		return strtolower( str_replace( $to_be_replaced, $to_replace, $original ) );
 	}
 
-	/**
-	 * Remove the extension type of the file from the string and returns only
-	 * the name of the file without the extension
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param string $file The file name.
-	 * @return string $result The file name without the extension
-	 */
-	public static function remove_extension( $file ) {
-		$names = explode( '.', $file );
-		return is_array( $names ) && count( $names ) > 0 ? array_shift( $names ) : $file;
+	public static function get_template_name( $template_path ) {
+		$tmp = trim( strtolower( $template_path ), ' _-');
+		return basename( trim( $tmp, '\s_'), '.php' );
 	}
 }
