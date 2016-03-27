@@ -27,7 +27,8 @@
   "autoload-dev": {
     "psr-4": {
       "Katana\\": "src/"
-    }
+    },
+    "files": ["src/Start.php"]
   },
   "scripts": {
     "setup-ci": [
