@@ -51,7 +51,7 @@ or any other custom conditional.
 ## Default size
 
 As a note or reminder take into account that the default image size is
-always generated even if you remove all default sizes.
+always generated even if you remove all image sizes with the filters.
 
 ## Filters 
 
@@ -59,6 +59,43 @@ Each filter allow to return what sizes of images are needed for that
 particular filter, the returned sizes represents the allowed images
 sizes, each size is the name that was registered when you created an
 image size using `add_image_size`.
+
+By default Katana applies 3 filters in the following order: 
+
+1. Filter by post_id - priority 10
+2. Filter by post type - priority 20
+3. Filter by template page - priority 30
+
+About filter priorities: 
+
+> Used to specify the order in which the functions associated with a particular action are executed. Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the filter.
+
+So if you are creating your own filter make sure to take priorities into account.
+
+### kata_refine
+
+This is the filter triggered by Katana and is the one that you can use
+to create custom conditionals or to create new filter names.
+
+The filter sends two parameters, so you need to explicity specify the
+number of arguments that are send to the filter: 
+
+- `$sizes` An array with the sizes of the images availables on the site.
+- `$id` The id of the post that triggers the filter.
+
+For example you want to remove all the image sizes from a page that has
+the title `tomacco`
+
+```php
+add_filer( 'katana_refine', function($sizes, $id) {
+    $title = strtolower( get_the_title( $id ) );
+    if ( $title === 'tomacco' ) {
+      return [];
+    } else {
+      return $sizes;
+    }
+}, 10, 2);
+```
 
 ### katana_refine_{post_type}  
 
