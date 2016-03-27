@@ -38,8 +38,7 @@
     ],
     "post-install-cmd": [ "@setup-ci"],
     "post-update-cmd": [ "@setup-ci"],
-    "test": [
-      "phpcs ./src/*.php ./src/*/*.php && phpunit"
-    ]
+    "ci": [ "phpcs ./src/*.php ./src/*/*.php" ],
+    "test": [ "phpunit" ]
   }
 }
