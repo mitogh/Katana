@@ -1,6 +1,6 @@
 <?php namespace Katana;
 
-use Katana\Helpers as Helpers;
+use Katana\Helpers\Config;
 
 /**
  * Katana is a simple filters system to allow user define the only required sizes
@@ -19,8 +19,8 @@ class Katana {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_filter( Helpers\Config::WP_FiLTER, array( $this, 'filter' ) );
-		add_filter( Helpers\Config::KATANA_FILTER, array( $this, 'refine' ), 10, 2 );
+		add_filter( Config::WP_FiLTER, [ $this, 'filter' ] );
+		add_filter( Config::KATANA_FILTER, [ $this, 'refine' ], 10, 2 );
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Katana {
 	 * @return array $sizes The array of sizes
 	 */
 	public function filter( $sizes ) {
-		return apply_filters( Helpers\Config::KATANA_FILTER, $sizes, $this->get_the_id() );
+		return apply_filters( Config::KATANA_FILTER, $sizes, $this->get_the_id() );
 	}
 
 	/**
