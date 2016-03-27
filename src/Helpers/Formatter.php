@@ -27,8 +27,19 @@ class Formatter {
 		return strtolower( str_replace( $to_be_replaced, $to_replace, $original ) );
 	}
 
+	/**
+	 * Helper function that returns the name of the template regardless of the location
+	 * of the template for instance something like:
+	 *
+	 * Example page-templates/contact-page.php => contact-page
+	 *
+	 * To have shorter filter names.
+	 *
+	 * @param string $template_path The path to the template.
+	 * @return string See example above.
+	 */
 	public static function get_template_name( $template_path ) {
-		$tmp = trim( strtolower( $template_path ), ' _-');
-		return basename( trim( $tmp, '\s_'), '.php' );
+		$tmp = trim( strtolower( $template_path ), ' _-' );
+		return basename( $tmp, '.php' );
 	}
 }
