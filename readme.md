@@ -72,7 +72,7 @@ About filter priorities:
 
 So if you are creating your own filter make sure to take priorities into account.
 
-### kata_refine
+### katana_refine
 
 This is the filter triggered by Katana and is the one that you can use
 to create custom conditionals or to create new filter names.
@@ -108,31 +108,23 @@ type.
 **Example**
 
 This example remove all the sizes from all of the pages, so any time you
-add an image on a page it wont create any new size of image. 
+add an image on a page it won't create a new size of image. 
 
 ```php
-add_filter('katana_refine_page', 'remove_all_sizes_from_pages');
-
-function remove_all_sizes_from_pages( $sizes ){
-  // Clear all the sizes of images
-  $sizes = array();
-  return $sizes;
-}
+add_filter('katana_refine_page', '__return_empty_array');
 ```
 
 ### katana_refine_{post_id}
 
-`{post_id}`, is the id of the post, page or custom post type all new
-entries has a `post_id`
+`{post_id}`, is the id of the post, page or custom post type. (all new
+entries has a `post_id`)
 
-This filter allow you to change the required sizes on a particular
-post_id all posts, pages or custom post types has a post_id than can be
-used for this. 
+This filter allows you to change the sizes on a particular `post_id`. (All posts, pages or custom post types has a post_id, than can be used with this filter).
 
 **Example**
 
-Imagine we have previously declared an `author_profile_image` size of
-image, like:
+Imagine we have previously declared an `author_profile_image` size of an
+image, as follows:
 
 ```php
 add_image_size( 'author_profile_image', 350, 350, true );
@@ -145,8 +137,7 @@ entry with the id: `105`.
 add_filter('katana_refine_105', 'allow_only_author_profile_image');
 
 function allow_only_author_profile_image( $sizes ){
-  $sizes = array( 'author_profile_image' );
-  return $sizes; 
+  return array( 'author_profile_image' );
 }
 ```
 
@@ -160,9 +151,9 @@ extension.
 
 | Location                    |     Filter name             |
 |-----------------------------|-----------------------------| 
-| page-templates/full.php     |     page_templates_full     |
-| page-templates/shop.php     |     page_templates_shop     |
-| portfolio.php               |     portfolio               |
+| page-templates/full.php     |     katana_refine_full        |
+| page-templates/shop.php     |     katana_refine_shop        |
+| portfolio.php               |     katana_refine_portfolio   |
 
 **Example** 
 
@@ -173,10 +164,9 @@ This filter just allow to create two sizes of images in the
 - landscape
 
 ```php
-add_filter('katana_refine_page_templates_full', 'image_sizes_for_full_page_template');
+add_filter('katana_refine_full', 'image_sizes_for_full_page_template');
 
 function image_sizes_for_full_page_template( $sizes ){
-  $sizes = array( 'poster', 'landscape' );
-  return $sizes; 
+  return array( 'poster', 'landscape' );
 }
 ```
