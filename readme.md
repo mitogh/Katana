@@ -3,35 +3,55 @@
 > Save disk space and creates custom images sizes only where is
 required.
 
-Custom filters to allow easy update of images sizes for [Wordpress](https://wordpress.org/).
+Custom filters to make sure the image sizes are generated only on pages or posts that requires the sizes on [WordPress](https://wordpress.org/), this will help to save some disk space of images that are not used at all on your WordPress installation.
 
 ![](/media/samurai.jpg)  
-***Picture from [WikiImages](https://pixabay.com/samurai-guerrero-caza-de-samurai-67662/)***
+Picture from [WikiImages](https://pixabay.com/samurai-guerrero-caza-de-samurai-67662/)
+
+## Previous version.
+
+If you are using a version below 2, please make sure you take a look at
+[the previous docs](readme-1.md) and if you are going to upgrade make
+sure you follow the installation guide.
 
 ## Installation 
 
-**This is not a plugin**, you can just download the `class-katana.php`
-or use composer to add it as a dependency in your website or plugin.
-After you download the file make sure to include the file using `include` function.
+**This is not a plugin**, rather is a library that can be used with your
+own plugin or your theme. 
 
-In order to have access to the filters you need to create a new instance
-of the Kata object.
+1. You need to download the library using [composer](https://getcomposer.org/). In order to do this you can run the following command: 
 
-```php
-$katana = new Katana();
+```bash
+composer require mitogh/katana
 ```
 
-Also makes sure to inclode the file `class-katana.php` into your
-`functions.php` file or in your plugin directory. After that you 
-can add all your custom filters that you may require.
+This will add the latest version of the library on your installation and
+will create a vendor directory where the files are going to be located.
+
+2. If you are using a plugin or `functions.php` from a theme you only
+   need to include the following file: 
+
+```php
+include dirname( __FILE__ ) . '/vendor/autoload.php';
+```
+
+That will allow you to use any filter from the class from `Katana` or
+any other package installed via composer.  
+
+That's practically all the process you need to follow in order to
+install the library, since the library automatically creates the object
+that is used for create the post and page filters.
 
 ## Usage
 
-This library comes with custom filters that allows edit what sizes are
-generated under some custom post types or under a specific `post_id`. 
+This library comes with some filters that allows you edit what sizes of
+images are generated under certain post types, page templates, post ID
+or any other custom conditional.
 
-**Note:** The default size of the image is always generated no matter
-if you remove all sizes.  
+## Default size
+
+As a note or reminder take into account that the default image size is
+always generated even if you remove all default sizes.
 
 ## Filters 
 
