@@ -8,7 +8,6 @@ php:
 before_script:
   - composer self-update -q
   - composer install
-  - composer update --prefer-lowest -n
   - composer update -n
 
 cache:
