@@ -1,19 +1,45 @@
 {
   "name": "mitogh/katana",
-  "description": "Add images sizes of Wordpress only where is required",
-  "require-dev": {
-    "squizlabs/php_codesniffer": "2.*",
-    "wp-coding-standards/wpcs": "dev-master"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/"
-    ]
-  },
+  "description": "Filters to control where the size of images are generated.",
+  "keywords": ["wordpress", "filter", "images"],
+  "homepage": "https://github.com/mitogh/Katana",
+  "type": "library",
+  "licence": "MIT",
   "authors": [
     {
-      "name": "mitogh",
-      "email": "mitogh@gmail.com"
+      "name": "Crisoforo Gaspar Hernandez",
+      "email": "hello@crisoforo.com"
     }
-  ]
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "2.*",
+    "wp-coding-standards/wpcs": "^0.9.0",
+    "phpunit/phpunit": "~4.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Katana\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Katana\\": "src/"
+    },
+    "files": ["src/Start.php"]
+  },
+  "scripts": {
+    "setup-ci": [
+      "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/",
+      "./vendor/bin/phpcs --config-set default_standard ./codesniffer.ruleset.xml",
+      "./vendor/bin/phpcs --config-set show_progress 0",
+      "./vendor/bin/phpcs --config-set colors 1"
+    ],
+    "post-install-cmd": [ "@setup-ci"],
+    "post-update-cmd": [ "@setup-ci"],
+    "ci": [ "phpcs ./src/*.php ./src/*/*.php" ],
+    "test": [ "phpunit" ]
+  }
 }
