@@ -1,5 +1,7 @@
 <?php namespace Katana\Helpers;
 
+use Katana\Helpers\Config;
+
 /**
  * Formatter helper methods to format strings from file names.
  *
@@ -25,6 +27,23 @@ class Formatter {
 		$to_replace = '_';
 		$original = self::get_template_name( $original );
 		return strtolower( str_replace( $to_be_replaced, $to_replace, $original ) );
+	}
+
+	/**
+	 * Creates a specific katana filter based on a param, like a post_id,
+	 * a page template name or similar.
+	 *
+	 * @param string $param The suffix of the filter
+	 * @return string KATANA_FILTER by default and adding a suffix is param is provided.
+	 * @since 2.0.0
+	 */
+	public static function katana_filter( $param = '' ) {
+		if ( $param ) {
+			$param = trim($param, ' _');
+			return sprintf( '%s_%s', Config::KATANA_FILTER, $param );
+		} else {
+			return Config::KATANA_FILTER;
+		}
 	}
 
 	/**

@@ -37,5 +37,22 @@ class FormatterTest extends \PHPUnit_Framework_TestCase {
 			['contact-page.php', 'contact-page'],
 		];
 	}
+
+	/**
+	 * @dataProvider filterParams
+	 */
+	public function testKatanaFilter( $param, $expected ){
+		$this->assertEquals( $expected, Formatter::katana_filter( $param ) );
+	}
+
+	public function filterParams(){
+		return [
+			[ '', Config::KATANA_FILTER ],
+			[ '12', Config::KATANA_FILTER . '_12' ],
+			[ 'contact_page', Config::KATANA_FILTER . '_contact_page' ],
+			[ '_extra_slaslh_before_after_', Config::KATANA_FILTER . '_extra_slaslh_before_after' ],
+			[ ' _extra_slaslh_before_after_   ', Config::KATANA_FILTER . '_extra_slaslh_before_after' ],
+		];
+	}
 }
 
