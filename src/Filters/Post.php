@@ -1,6 +1,7 @@
 <?php namespace Katana\Filters;
 
 use Katana\Helpers\Config;
+use Katana\Helpers\Formatter;
 
 /**
  * Attach specifc filters associated with a post.
@@ -15,8 +16,8 @@ class Post {
 	 * @since 2.0.0
 	 */
 	public function __construct() {
-		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_post_id' ] );
-		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_post_type' ] );
+		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_post_id' ], 10, 2 );
+		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_post_type' ], 20, 2 );
 	}
 
 	/**
@@ -45,10 +46,6 @@ class Post {
 	 */
 	public function filter_by_post_type( $sizes, $post_id = 0 ) {
 		$type = get_post_type( $post_id );
-		if ( empty( $type ) ) {
-			return $sizes;
-		} else {
-			return apply_filters( Formatter::katana_filter( $type ), $sizes );
-		}
+		return apply_filters( Formatter::katana_filter( $type ), $sizes );
 	}
 }

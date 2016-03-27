@@ -1,6 +1,7 @@
 <?php namespace Katana\Filters;
 
 use Katana\Helpers\Config;
+use Katana\Helpers\Formatter;
 
 /**
  * Attach filters specifc to page templates.
@@ -15,7 +16,7 @@ class Page {
 	 * @since 2.0.0
 	 */
 	public function __construct() {
-		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_template_page' ] );
+		add_filter( Config::KATANA_FILTER, [ $this, 'filter_by_template_page' ], 30, 2 );
 	}
 
 	/**
@@ -33,7 +34,7 @@ class Page {
 		if ( empty( $template ) ) {
 			return $sizes;
 		}
-		$template_name = Formatter::to_filter_name( $template );
+		$template_name = Formatter::to_filter_format( $template );
 		return apply_filters( Formatter::katana_filter( $template_name ), $sizes );
 	}
 }
