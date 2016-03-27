@@ -114,6 +114,16 @@ add an image on a page it won't create a new size of image.
 add_filter('katana_refine_page', '__return_empty_array');
 ```
 
+The default two filters are: 
+
+- `katana_refine_post`: Will allow you to update all the images
+  generated in all posts.
+- `katana_refine_page`: Allow you to change the default sizes generated
+  on all the pages.
+
+Every time you create a new post type, you can use a new filter with the
+slug of the new post type.
+
 ### katana_refine_{post_id}
 
 `{post_id}`, is the id of the post, page or custom post type. (all new
@@ -144,16 +154,17 @@ function allow_only_author_profile_image( $sizes ){
 ### katana_refine_{template_slug}
 
 `{template_slug}`,  is the slug of the template, the slug is where is
-located the template, replacing `-` and `/` by `_` and witout the `.php`
-extension. 
+located the template, the template name is generated only with the last
+name of the template and removing the `.php` extension of that template
+file, some examples below:
 
 **Examples**  
 
 | Location                    |     Filter name             |
 |-----------------------------|-----------------------------| 
-| page-templates/full.php     |     katana_refine_full        |
-| page-templates/shop.php     |     katana_refine_shop        |
-| portfolio.php               |     katana_refine_portfolio   |
+| page-templates/full.php     |     katana_refine_full      |
+| page-templates/shop-page.php|     katana_refine_shop_page |
+| portfolio.php               |     katana_refine_portfolio |
 
 **Example** 
 
