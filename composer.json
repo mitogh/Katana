@@ -16,26 +16,30 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "2.*",
-    "wp-coding-standards/wpcs": "dev-master",
+    "wp-coding-standards/wpcs": "^0.9.0",
     "phpunit/phpunit": "~4.5"
   },
   "autoload": {
-    "psr-4": {"Katana\\": "src/Katana"}
+    "psr-4": {
+      "Katana\\": "src/"
+    }
   },
   "autoload-dev": {
-    "psr-4": {"Katana\\": "tests/Katana"}
+    "psr-4": {
+      "Katana\\": "src/"
+    }
   },
   "scripts": {
-    "post-update-cmd": [
+    "setup-ci": [
       "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/",
       "./vendor/bin/phpcs --config-set default_standard ./codesniffer.ruleset.xml",
       "./vendor/bin/phpcs --config-set show_progress 0",
       "./vendor/bin/phpcs --config-set colors 1"
     ],
+    "post-install-cmd": [ "@setup-ci"],
+    "post-update-cmd": [ "@setup-ci"],
     "test": [
-        "phpcs ./src/Katana/*.php",
-        "phpcs ./src/Katana/*/*.php",
-        "phpunit"
+      "phpcs ./src/*.php ./src/*/*.php && phpunit"
     ]
   }
 }
